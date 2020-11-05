@@ -36,7 +36,7 @@ def load_img(item):
         for id, url in item[0].items():
             get_img(url, catch_name(url))
     else:
-        pass
+        get_img(item[0], catch_name(item[0]))
 
     return item
 

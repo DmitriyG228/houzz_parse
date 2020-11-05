@@ -16,21 +16,6 @@ class HouzzParseSpider(scrapy.Spider):
         'img_product': '//img[@class="view-product-image__img"]/@src',
     }
 
-    xpath_product = {
-        'model': '',
-        # 'product_ID': '',
-        # 'manufactured_By': '',
-        # 'sold_By': '',
-        # 'size_Weight': '',
-        # 'color': '',
-        # 'materials': '',
-        # 'assembly_Required': '',
-        # 'category': '',
-        # 'style': '',
-        # 'collection': '',
-
-    }
-
     def parse(self, response, **kwargs):
         for url in response.xpath(self.xpath['link_page']):
             yield response.follow(url, callback=self.parse_product_page)
@@ -56,7 +41,19 @@ class HouzzParseSpider(scrapy.Spider):
             for id, new_gamma_url in gamma_data.items():
                 yield response.follow(new_gamma_url['url'], callback=self.parse_product_page)
         except Exception as ex:
-            print(f"Can't LOAD GAMMA")
+            print(f"Can't find gamma")
+
+        try:
+            #variation_size_choise
+            variation_size = product_variation_json['data']['stores']['data']['ProductVariationsStore']['data'][product_id]['variationsMap']['s']
+            variation_map = product_variation_json['data']['stores']['data']['ProductVariationsStore']['data'][product_id]['variationProducts']
+            for id, new_variation_url in variation_size.items():
+
+                url_id_str = new_variation_url['spaceId'].__str__()
+                yield response.follow(variation_map[url_id_str]['url'], callback=self.parse_product_page)
+
+        except Exception as ex:
+            print(f'Can\'t find variation')
 
         try:
             # Catch IMG
