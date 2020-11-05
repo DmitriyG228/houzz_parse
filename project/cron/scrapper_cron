@@ -1,0 +1,1 @@
+*/5 * * * *     d=`date`; echo $d >> /tmp/scrapper.log; /usr/bin/python3 /home/houzz_parse/main.py >> /tmp/scrapper.log

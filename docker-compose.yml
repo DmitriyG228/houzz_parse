@@ -1,0 +1,19 @@
+version: '2'
+services:
+    scrapper:
+        image: mongo
+        build:
+          context: .
+        #   dockerfile: Dockerfile
+        container_name: "houzz_parse"
+        environment:
+          - MONGO_DATA_DIR=/data/db
+          - MONGO_LOG_DIR=/dev/null
+            #- PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+        volumes:
+          - ./data/db:/data/db
+          - ./project/:/home/houzz_parse/
+        ports:
+            - "27017:27017"
+            - "22001:22"
+              #command: mongod --logpath=/dev/null
