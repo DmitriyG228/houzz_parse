@@ -12,7 +12,7 @@ services:
             #- PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
         volumes:
           - ./data/db:/data/db
-          - ./project/:/home/houzz_parse/
+          - ./furniture/:/home/houzz_parse/furniture
         ports:
             - "27017:27017"
             - "22001:22"

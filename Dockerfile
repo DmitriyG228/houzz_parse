@@ -9,15 +9,15 @@ RUN apt-get install -y python3 python3-pip \
 	vim \
 	mc
 RUN pip3 install \
-	requests \
-	pymongo \
-	scrapy \
-	json \
-	re \
-	httplib2 \
-	urllib \
-	itemloaders \
-	pathlib
+        requests \
+        pymongo \
+        scrapy \
+        wheel \
+        scrapy-rotating-proxies \
+        scrapy-useragents \
+        httplib2 \
+        itemloaders \
+        pathlib
 
 CMD [ "useradd --create-home houzz_parse" ]
 
@@ -28,7 +28,7 @@ COPY ./project/conf/mongod.conf /etc/
 
 #COPY ./project/cron/scrapper_cron /var/spool/cron/crontabs/root
 COPY ./main.py /home/houzz_parse/
-COPY ./furniture /home/houzz_parse/
+COPY ./project /home/houzz_parse/
 COPY ./project/conf/supervisor.conf /etc/supervisor/conf.d/supervisor.conf
 
 
