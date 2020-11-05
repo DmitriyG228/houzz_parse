@@ -11,4 +11,6 @@ class FurnitureItem(scrapy.Item):
     # name = scrapy.Field()
     _id = scrapy.Field()
     url = scrapy.Field()
-    pass
+    product_specifications = scrapy.Field()
+    url_img_product = scrapy.Field()
+    price = scrapy.Field()
