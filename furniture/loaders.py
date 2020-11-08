@@ -7,7 +7,7 @@ from itemloaders.processors import TakeFirst, MapCompose
 from scrapy.loader import ItemLoader
 from urllib.parse import urlparse
 
-from .items import FurnitureItem
+from .items import FurnitureItem, DesignItem
 
 def get_product_spec(item):
     current_id = str(item[0]['data']['stores']['data']['ProductDataStore']['data']['currentSpaceId'])
@@ -52,3 +52,10 @@ class FurnitureItem(ItemLoader):
     product_specifications_out = TakeFirst()
     url_img_product_out = TakeFirst()
     price_out = TakeFirst()
+
+class DisignItem(ItemLoader):
+    default_item_class = DesignItem
+
+    url_out = TakeFirst()
+    type_place_out = TakeFirst()
+    image_data_out = TakeFirst()
