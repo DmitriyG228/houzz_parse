@@ -92,8 +92,8 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   #'furniture.pipelines.FurniturePipeline': 300,
-   'furniture.pipelines.DisignPipeline': 300,
+   'furniture.pipelines.FurniturePipeline': 300,
+   #'furniture.pipelines.DisignPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

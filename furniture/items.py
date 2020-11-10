@@ -22,3 +22,4 @@ class DesignItem(scrapy.Item):
     url = scrapy.Field()
     type_place = scrapy.Field()
     image_data = scrapy.Field()
+    photo_url = scrapy.Field()

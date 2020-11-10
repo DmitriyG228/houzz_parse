@@ -12,7 +12,8 @@ class HouzzIdeasParseSpider(scrapy.Spider):
     xpath = {
         'category': '//a[@data-compid="topCategory"]/@href',
         'ideas_page': '//div[contains=(@class, "hz-space-card__image-container")/@href',
-        'next_page': '//div[@class="hz-pagination-link hz-pagination-link--next"]/@href',
+        'next_page': '//a[@class="hz-pagination-link hz-pagination-link--next"]/@href',
+        'photo_url': '//div[@class="view-photo-image-pane"]/img/@src',
     }
 
     def parse(self, response, **kwargs):
@@ -37,18 +38,17 @@ class HouzzIdeasParseSpider(scrapy.Spider):
             print(f'category_list is NULL, :url {response.url}')
 
         #paginator on category
-        url_next = response.xpath(self.xpath['next_page'])
+        url_next = response.xpath(self.xpath['next_page']).extract_first()
         yield response.follow(url_next, callback=self.parse_category, cb_kwargs={'name_category': kwargs['name_category']})
 
-
-
     def parse_ideas_page(self, response, **kwargs):
-
         # parse product
         loader = DesignItem(response=response)
         loader.add_value('url', response.url)
-        loader.add_value('type_place_out', kwargs['name_category'])
+        loader.add_value('type_place', kwargs['name_category'])
         loader.add_value('image_data', kwargs['image_data'])
+        loader.add_value('photo_url', response.xpath(self.xpath['photo_url']).extract_first())
+
         yield loader.load_item()
 
 
