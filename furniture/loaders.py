@@ -20,7 +20,7 @@ def get_product_spec(item):
 def get_img(url, name):
     h = httplib2.Http()
     response, content = h.request(url)
-    path = f'./PICTURE'
+    path = f'/home/dima/nas/real_nas/houzz/pictures'
     Path(path).mkdir(parents=True, exist_ok=True)
     with open(f'{path}/{name}.jpg', 'wb') as out:
         out.write(content)
