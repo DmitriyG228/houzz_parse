@@ -8,6 +8,7 @@ __pycache__/
 
 # Distribution / packaging
 PICTURE/
+PICTURE_DISIGN/
 .Python
 build/
 develop-eggs/
