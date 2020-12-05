@@ -14,3 +14,12 @@ class FurnitureItem(scrapy.Item):
     product_specifications = scrapy.Field()
     url_img_product = scrapy.Field()
     price = scrapy.Field()
+
+class DesignItem(scrapy.Item):
+    # define the fields for your item here like:
+    # name = scrapy.Field()
+    _id = scrapy.Field()
+    url = scrapy.Field()
+    type_place = scrapy.Field()
+    image_data = scrapy.Field()
+    photo_url = scrapy.Field()
